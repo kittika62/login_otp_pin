@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_otp_pin/register.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -19,8 +20,8 @@ class _WelcomeState extends State<Welcome> {
           child: Column(
             children: [
               Image.asset(
-                'assets/images/developer.png',
-                width: 240,
+                'assets/images/chatting-app.png',
+                width: 250,
               ),
               const SizedBox(
                 height: 18,
@@ -49,7 +50,13 @@ class _WelcomeState extends State<Welcome> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Register(),
+                      ),
+                    );
+                  },
                   style: ButtonStyle(
                     foregroundColor:
                         WidgetStateProperty.all<Color>(Colors.white),
