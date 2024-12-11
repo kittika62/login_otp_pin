@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:login_otp_pin/otp.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class Otp extends StatefulWidget {
+  const Otp({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<Otp> createState() => _OtpState();
 }
 
-class _RegisterState extends State<Register> {
+class _OtpState extends State<Otp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +44,7 @@ class _RegisterState extends State<Register> {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Image.asset(
-                    'assets/images/video-call.png',
+                    'assets/images/mail-icon.png',
                   ),
                 ),
               ),
@@ -53,7 +52,7 @@ class _RegisterState extends State<Register> {
                 height: 18,
               ),
               const Text(
-                "Registration",
+                "Verification",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -63,7 +62,7 @@ class _RegisterState extends State<Register> {
                 height: 10,
               ),
               const Text(
-                "Add your phone number. we'll send you a verification code so we know yo're real.",
+                "Enter your code number",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
@@ -82,35 +81,14 @@ class _RegisterState extends State<Register> {
                 ),
                 child: Column(
                   children: [
-                    TextFormField(
-                      keyboardType: TextInputType.number,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black12),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black12),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        prefix: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                          child: Text(
-                            '(+62)',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        suffixIcon: const Icon(
-                          Icons.check_circle,
-                          color: Colors.green,
-                          size: 32,
-                        ),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _textFieldOTP(first: true, last: false),
+                        _textFieldOTP(first: false, last: false),
+                        _textFieldOTP(first: false, last: false),
+                        _textFieldOTP(first: false, last: true),
+                      ],
                     ),
                     const SizedBox(
                       height: 22,
@@ -118,13 +96,7 @@ class _RegisterState extends State<Register> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Otp(),
-                            ),
-                          );
-                        },
+                        onPressed: () {},
                         style: ButtonStyle(
                           foregroundColor:
                               WidgetStateProperty.all<Color>(Colors.white),
@@ -140,7 +112,7 @@ class _RegisterState extends State<Register> {
                         child: const Padding(
                           padding: EdgeInsets.all(14),
                           child: Text(
-                            'Send',
+                            'Verify',
                             style: TextStyle(
                               fontSize: 16,
                             ),
@@ -148,13 +120,69 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 22,
-                    ),
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 18,
+              ),
+              const Text(
+                "Didn't you receive any code?",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black38,
+                ),
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              const Text(
+                "Resend New Code",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.purple,
+                ),
+              )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _textFieldOTP({first, last}) {
+    return Container(
+      height: 85,
+      child: AspectRatio(
+        aspectRatio: 0.7,
+        child: TextField(
+          autofocus: true,
+          onChanged: (value) {
+            if (value.length == 1 && last == false) {
+              FocusScope.of(context).nextFocus();
+            }
+            if (value.length == 0 && first == false) {
+              FocusScope.of(context).previousFocus();
+            }
+          },
+          showCursor: false,
+          readOnly: false,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          keyboardType: TextInputType.number,
+          maxLength: 1,
+          decoration: InputDecoration(
+            counter: const Offstage(),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(width: 2, color: Colors.black12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(width: 2, color: Colors.purple),
+              borderRadius: BorderRadius.circular(12),
+            ),
           ),
         ),
       ),
