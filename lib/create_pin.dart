@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:login_otp_pin/create_pin.dart';
 
-class Otp extends StatefulWidget {
-  const Otp({super.key});
+class CreatePin extends StatefulWidget {
+  const CreatePin({super.key});
 
   @override
-  State<Otp> createState() => _OtpState();
+  State<CreatePin> createState() => _CreatePinState();
 }
 
-class _OtpState extends State<Otp> {
+class _CreatePinState extends State<CreatePin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,25 +34,25 @@ class _OtpState extends State<Otp> {
               const SizedBox(
                 height: 18,
               ),
-              Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple.shade50,
-                  shape: BoxShape.circle,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Image.asset(
-                    'assets/images/mail-icon.png',
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 18,
-              ),
+              // Container(
+              //   width: 200,
+              //   height: 200,
+              //   decoration: BoxDecoration(
+              //     color: Colors.deepPurple.shade50,
+              //     shape: BoxShape.circle,
+              //   ),
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(20.0),
+              //     child: Image.asset(
+              //       'assets/images/mail-icon.png',
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 18,
+              // ),
               const Text(
-                "Verification",
+                "Enter passcode",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -63,7 +62,7 @@ class _OtpState extends State<Otp> {
                 height: 10,
               ),
               const Text(
-                "Enter your code number",
+                "Enter your passcode below.",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
@@ -98,11 +97,11 @@ class _OtpState extends State<Otp> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => CreatePin(),
-                            ),
-                          );
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //     builder: (context) => Otp(),
+                          //   ),
+                          // );
                         },
                         style: ButtonStyle(
                           foregroundColor:
